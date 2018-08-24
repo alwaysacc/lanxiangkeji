@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -30,7 +32,17 @@ public class NewsController {
         model.addAttribute("list",list);
         return "news_list";
     }
-
+    @RequestMapping("/addNews")
+    public String addNews(News news){
+        System.out.println(news.getNews());
+        System.out.println(news.getNews_title());
+        SimpleDateFormat formate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        news.setTimes(formate.format(new Date()));
+        System.out.println(news.getTimes());
+        if (ns.addNews(news)!=0)
+        return "news_list";
+        else return "news_add";
+    }
     @RequestMapping("/news_Sort")
     public String news_Sort(){
         return "news_Sort";

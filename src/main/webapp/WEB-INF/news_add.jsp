@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
         <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="${pageContext.request.contextPath}/stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
         <link href="${pageContext.request.contextPath}/assets/css/codemirror.css" rel="stylesheet">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/ace.min.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/font/css/font-awesome.min.css" />
@@ -28,9 +28,10 @@
 <div class="margin clearfix">
  <div class="article_style">
     <div class="add_content" id="form-article-add">
+        <form id="form1" method="post" action="${pageContext.request.contextPath}/news/addNews.do">
      <ul>
       <li class="clearfix Mandatory">
-      <label class="label_name"><i>*</i>文章标题</label><span class="formControls col-10"><input name="文章标题" type="text" id="form-field-1" class="col-xs-10 col-sm-5 "></span>
+      <label class="label_name"><i>*</i>文章标题</label><span class="formControls col-10"><input  name="news_title" type="text" id="form-field-1" class="col-xs-10 col-sm-5 "></span>
       </li>
       <li class="clearfix Mandatory"><label class="label_name"><i>*</i>文章简介</label>
       <span class="formControls col-10"><input name="文章简介" type="text" id="form-field-1" class="col-xs-10 col-sm-6 "></span>
@@ -59,7 +60,7 @@
        </span>
       </li>
       <li class="clearfix"><label class="label_name">文章内容</label>
-      <span class="formControls col-10"><script id="editor" type="text/plain" style="width:100%;height:400px; margin-left:10px;"></script> </span>
+      <span  class="formControls col-10"><script id="editor" name="news" type="text/plain" style="width:100%;height:400px; margin-left:10px;"></script> </span>
       </li>
      </ul>
     <div class="Button_operation">
@@ -67,7 +68,9 @@
 				<button onclick="article_save();" class="btn btn-secondary  btn-warning" type="button">保存草稿</button>
 				<button onclick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
+      /form>
     </div>
+      <
  </div>
 </div>
 </body>
@@ -80,6 +83,7 @@
 function article_save_submit(){
 	     var num=0;
 		 var str="";
+		 var f=document.getElementById("form1");
      $(".Mandatory input[type$='text']").each(function(n){
           if($(this).val()=="")
           {
@@ -96,10 +100,12 @@ function article_save_submit(){
           else{
 			  layer.alert('添加成功！',{
                title: '提示框',				
-			icon:1,		
+			    icon:1,
 			  });
+              location.href="${pageContext.request.contextPath}/news/addNews.do";
+              f.submit();
 			   layer.close(index);	
-		  }		  		     					
+		  }
 	}
 $(function(){
 	var ue = UE.getEditor('editor');

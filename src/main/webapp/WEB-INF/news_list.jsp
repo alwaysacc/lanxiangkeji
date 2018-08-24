@@ -91,7 +91,7 @@
         <c:forEach  items="${list}" var="list">
         <tr>
             <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-            <td>${list.newsImage}</td>
+            <td>${list.news_image}</td>
             <td>2</td>
             <td>帮助中心</td>
             <td> 订单已提交成功，如何付款？</td>

@@ -3,48 +3,48 @@ package com.lanxiang.model;
 import java.util.Date;
 
 public class News {
-    private Integer newsId;
+    private Integer news_id;
 
-    private String newsTitle;
+    private String news_title;
 
-    private String newsImage;
+    private String news_image;
 
-    private String newsType;
+    private String news_type;
 
     private String news;
 
-    private Date time;
+    private String times;
 
-    public Integer getNewsId() {
-        return newsId;
+    public Integer getNews_id() {
+        return news_id;
     }
 
-    public void setNewsId(Integer newsId) {
-        this.newsId = newsId;
+    public void setNews_id(Integer news_id) {
+        this.news_id = news_id;
     }
 
-    public String getNewsTitle() {
-        return newsTitle;
+    public String getNews_title() {
+        return news_title;
     }
 
-    public void setNewsTitle(String newsTitle) {
-        this.newsTitle = newsTitle == null ? null : newsTitle.trim();
+    public void setNews_title(String news_title) {
+        this.news_title = news_title == null ? null : news_title.trim();
     }
 
-    public String getNewsImage() {
-        return newsImage;
+    public String getNews_image() {
+        return news_image;
     }
 
-    public void setNewsImage(String newsImage) {
-        this.newsImage = newsImage == null ? null : newsImage.trim();
+    public void setNews_image(String news_image) {
+        this.news_image = news_image == null ? null : news_image.trim();
     }
 
-    public String getNewsType() {
-        return newsType;
+    public String getNews_type() {
+        return news_type;
     }
 
-    public void setNewsType(String newsType) {
-        this.newsType = newsType == null ? null : newsType.trim();
+    public void setNews_type(String news_type) {
+        this.news_type = news_type == null ? null : news_type.trim();
     }
 
     public String getNews() {
@@ -55,11 +55,11 @@ public class News {
         this.news = news == null ? null : news.trim();
     }
 
-    public Date getTime() {
-        return time;
+    public String getTimes() {
+        return times;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setTimes(String times) {
+        this.times = times;
     }
 }
