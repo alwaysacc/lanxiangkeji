@@ -15,6 +15,9 @@
   <insert id="addNews" parameterType="News">
     insert into news(news_title,news_image,news_type,news,times) values (#{news_title},#{news_image},#{news_type},#{news},#{times})
   </insert>
+  <delete id="deleteNews" parameterType="News" >
+    delete  from news where news_id=#{news_id}
+  </delete>
   <!--
 <sql id="Example_Where_Clause" >
   <where >

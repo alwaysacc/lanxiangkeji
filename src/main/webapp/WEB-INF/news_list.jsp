@@ -78,12 +78,10 @@
         <tr>
             <th width="25"><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
             <th width="80px">ID</th>
-            <th  width="80px">排序</th>
             <th width="100">所属分类</th>
             <th width="220px">标题</th>
             <th width="">简介</th>
             <th width="150px">添加时间</th>
-            <th width="80px">状态</th>
             <th width="150px">操作</th>
         </tr>
         </thead>
@@ -91,16 +89,14 @@
         <c:forEach  items="${list}" var="list">
         <tr>
             <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-            <td>${list.news_image}</td>
-            <td>2</td>
-            <td>帮助中心</td>
-            <td> 订单已提交成功，如何付款？</td>
-            <td class="displayPart" displayLength="60">付款方式分为以下几种：（注：先款订单请您在订单提交后24小时内完成支付， 否则订单会自动取消）</td>
-            <td>2016-7-25 12:34</td>
-            <td>显示</td>
+            <td>${list.news_id}</td>
+            <td>${list.news_type}</td>
+            <td>${list.news_title}</td>
+            <td> ${list.news}</td>
+            <td>${list.times}</td>
             <td class="td-manage">
                 <a title="编辑" onclick="member_edit('编辑','member-add.html','4','','510')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="fa fa-edit bigger-120"></i></a>
-                <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-danger" ><i class="fa fa-trash  bigger-120"></i></a>
+                <a title="删除" href="javascript:;"  onclick="member_del(this,${list.news_id})" class="btn btn-xs btn-danger" ><i class="fa fa-trash  bigger-120"></i></a>
             </td>
         </tr>
         </c:forEach>
@@ -131,14 +127,15 @@ $('#add_page').on('click', function(){
 	//parent.$('.Current_page').html("<a href='javascript:void(0)' name="+herf+" class='iframeurl'>" + cnames + "</a>");
     parent.layer.close(index);
 	
-}); 
+});
+
 $(function() {
 		var oTable1 = $('#sample-table').dataTable( {
 		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
 		"bStateSave": true,//状态保存
 		"aoColumnDefs": [
 		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		  {"orderable":false,"aTargets":[0,2,3,4,5,7,]}// 制定列不参与排序
+		  {"orderable":false,"aTargets":[0,2,3,4,5,]}// 制定列不参与排序
 		] } );
 				$('table th input:checkbox').on('click' , function(){
 					var that = this;
@@ -175,9 +172,22 @@ $(function() {
 
 /*文章-删除*/
 function member_del(obj,id){
-	layer.confirm('确认要删除吗？',{icon:0,},function(index){
-		$(obj).parents("tr").remove();
-		layer.msg('已删除!',{icon:1,time:1000});
+	layer.confirm('确认要删除吗？'+id,{icon:0,},function(index){
+        $.ajax({
+            type: "post",
+            url: "${pageContext.request.contextPath}/news/deleteNews.do?news_id="+id,
+            dataType: "text",
+            async:true,
+            success:function(data) {
+                if(data == 1){
+                    layer.msg('删除成功', {icon: 1});
+                    $(obj).parents("tr").remove();
+                }else{
+                    layer.msg('删除失败', {icon: 2});
+                }
+            }
+        })
+
 	});
 }
 

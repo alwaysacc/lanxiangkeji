@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface NewsDao {
 
-    List getNewsList(PageInfo pageInfo);
+    List getNewsList();
     int addNews(News news);
+    int deleteNews(News news);
 }

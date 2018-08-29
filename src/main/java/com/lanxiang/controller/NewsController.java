@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
@@ -24,14 +25,19 @@ public class NewsController {
 
 
     @RequestMapping("/news_list")
-    public String news_list(PageInfo PageInfo, Model model){
-        PageInfo.setStartRow(1);
-        PageInfo.setSize(5);
-        List<News> list=ns.getNewsList(PageInfo);
-        System.out.println(list.get(1));
+    public String news_list(Model model){
+        List<News> list=ns.getNewsList();
         model.addAttribute("list",list);
         return "news_list";
     }
+
+    @RequestMapping("/deleteNews")
+    public  @ResponseBody int deleteNews(News news,Model model){
+
+        System.out.println(news.getNews_id());
+        return ns.deleteNews(news);
+    }
+
     @RequestMapping("/addNews")
     public String addNews(News news){
         System.out.println(news.getNews());

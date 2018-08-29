@@ -18,14 +18,19 @@ public class NewsServiceImpl implements NewsService {
     private NewsDao nd;
 
     @Override
-    public List getNewsList(PageInfo PageInfo) {
+    public List getNewsList() {
 
-        return nd.getNewsList(PageInfo);
+        return nd.getNewsList();
     }
 
     @Override
     public int addNews(News news) {
         return nd.addNews(news);
+    }
+
+    @Override
+    public int deleteNews(News news) {
+        return nd.deleteNews(news);
     }
 
 }

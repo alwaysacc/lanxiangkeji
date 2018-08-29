@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface NewsService {
 
-    public List getNewsList(PageInfo PageInfo);
+    public List getNewsList();
     public int addNews(News news);
+    int deleteNews(News news);
 }
