@@ -33,8 +33,6 @@ public class NewsController {
 
     @RequestMapping("/deleteNews")
     public  @ResponseBody int deleteNews(News news,Model model){
-
-        System.out.println(news.getNews_id());
         return ns.deleteNews(news);
     }
 

@@ -132,7 +132,7 @@ $('#add_page').on('click', function(){
 $(function() {
 		var oTable1 = $('#sample-table').dataTable( {
 		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-		"bStateSave": true,//状态保存
+		"bStateSave": false,//状态保存
 		"aoColumnDefs": [
 		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
 		  {"orderable":false,"aTargets":[0,2,3,4,5,]}// 制定列不参与排序
@@ -182,6 +182,7 @@ function member_del(obj,id){
                 if(data == 1){
                     layer.msg('删除成功', {icon: 1});
                     $(obj).parents("tr").remove();
+                    location.reload();
                 }else{
                     layer.msg('删除失败', {icon: 2});
                 }
