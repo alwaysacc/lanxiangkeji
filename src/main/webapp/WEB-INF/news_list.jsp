@@ -124,7 +124,7 @@ $('#add_page').on('click', function(){
     parent.$('#iframe').attr("src",chref).ready();;
 	parent.$('#parentIframe').css("display","inline-block");
 	parent.$('.Current_page').attr({"name":herf,"href":"javascript:void(0)"}).css({"color":"#4c8fbd","cursor":"pointer"});
-	//parent.$('.Current_page').html("<a href='javascript:void(0)' name="+herf+" class='iframeurl'>" + cnames + "</a>");
+    //parent.$('.Current_page').html("<a href='javascript:void(0)' name="+herf+" class='iframeurl'>" + cnames + "</a>");
     parent.layer.close(index);
 	
 });
@@ -182,14 +182,11 @@ function member_del(obj,id){
                 if(data == 1){
                     layer.msg('删除成功', {icon: 1});
                     $(obj).parents("tr").remove();
-                    location.reload();
                 }else{
                     layer.msg('删除失败', {icon: 2});
                 }
             }
         })
-
 	});
 }
-
 </script>
