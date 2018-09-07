@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lanxiang.dao.OrderItemDao" >
+  <resultMap id="BaseResultMap" type="com.lanxiang.model.Orderitem" >
+    <id column="itemid" property="itemid" jdbcType="INTEGER" />
+    <result column="menxing" property="menxing" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+    <result column="chicun" property="chicun" jdbcType="VARCHAR" />
+    <result column="menxiang" property="menxiang" jdbcType="VARCHAR" />
+    <result column="mensuo" property="mensuo" jdbcType="VARCHAR" />
+    <result column="heye" property="heye" jdbcType="VARCHAR" />
+    <result column="menxi" property="menxi" jdbcType="VARCHAR" />
+    <result column="xuanpei" property="xuanpei" jdbcType="VARCHAR" />
+    <result column="beizhu" property="beizhu" jdbcType="VARCHAR" />
+    <result column="oid" property="oid" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="addOrderItem" parameterType="Orderitem">
+  insert into orderItem (menxing,color,chicun,menxiang,mensuo,heye,menxi,xianpei,beizhu,oid) values (#{menxing},#{color},#{chicun},#{menxiang},#{mensuo},#{heye},#{menxi},#{xuanpei},#{beizhu},#{oid})
+  </insert>
+  <!--
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    itemid, menxing, color, chicun, menxiang, mensuo, heye, menxi, xuanpei, beizhu, oid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qp.pojo.OrderitemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from orderitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orderitem
+    where itemid = #{itemid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orderitem
+    where itemid = #{itemid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qp.pojo.OrderitemExample" >
+    delete from orderitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qp.pojo.Orderitem" >
+    insert into orderitem (itemid, menxing, color, 
+      chicun, menxiang, mensuo, 
+      heye, menxi, xuanpei, 
+      beizhu, oid)
+    values (#{itemid,jdbcType=INTEGER}, #{menxing,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, 
+      #{chicun,jdbcType=VARCHAR}, #{menxiang,jdbcType=VARCHAR}, #{mensuo,jdbcType=VARCHAR}, 
+      #{heye,jdbcType=VARCHAR}, #{menxi,jdbcType=VARCHAR}, #{xuanpei,jdbcType=VARCHAR}, 
+      #{beizhu,jdbcType=VARCHAR}, #{oid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qp.pojo.Orderitem" >
+    insert into orderitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemid != null" >
+        itemid,
+      </if>
+      <if test="menxing != null" >
+        menxing,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+      <if test="chicun != null" >
+        chicun,
+      </if>
+      <if test="menxiang != null" >
+        menxiang,
+      </if>
+      <if test="mensuo != null" >
+        mensuo,
+      </if>
+      <if test="heye != null" >
+        heye,
+      </if>
+      <if test="menxi != null" >
+        menxi,
+      </if>
+      <if test="xuanpei != null" >
+        xuanpei,
+      </if>
+      <if test="beizhu != null" >
+        beizhu,
+      </if>
+      <if test="oid != null" >
+        oid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemid != null" >
+        #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="menxing != null" >
+        #{menxing,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="chicun != null" >
+        #{chicun,jdbcType=VARCHAR},
+      </if>
+      <if test="menxiang != null" >
+        #{menxiang,jdbcType=VARCHAR},
+      </if>
+      <if test="mensuo != null" >
+        #{mensuo,jdbcType=VARCHAR},
+      </if>
+      <if test="heye != null" >
+        #{heye,jdbcType=VARCHAR},
+      </if>
+      <if test="menxi != null" >
+        #{menxi,jdbcType=VARCHAR},
+      </if>
+      <if test="xuanpei != null" >
+        #{xuanpei,jdbcType=VARCHAR},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="oid != null" >
+        #{oid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qp.pojo.OrderitemExample" resultType="java.lang.Integer" >
+    select count(*) from orderitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update orderitem
+    <set >
+      <if test="record.itemid != null" >
+        itemid = #{record.itemid,jdbcType=INTEGER},
+      </if>
+      <if test="record.menxing != null" >
+        menxing = #{record.menxing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.color != null" >
+        color = #{record.color,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chicun != null" >
+        chicun = #{record.chicun,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menxiang != null" >
+        menxiang = #{record.menxiang,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mensuo != null" >
+        mensuo = #{record.mensuo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.heye != null" >
+        heye = #{record.heye,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menxi != null" >
+        menxi = #{record.menxi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xuanpei != null" >
+        xuanpei = #{record.xuanpei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beizhu != null" >
+        beizhu = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oid != null" >
+        oid = #{record.oid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update orderitem
+    set itemid = #{record.itemid,jdbcType=INTEGER},
+      menxing = #{record.menxing,jdbcType=VARCHAR},
+      color = #{record.color,jdbcType=VARCHAR},
+      chicun = #{record.chicun,jdbcType=VARCHAR},
+      menxiang = #{record.menxiang,jdbcType=VARCHAR},
+      mensuo = #{record.mensuo,jdbcType=VARCHAR},
+      heye = #{record.heye,jdbcType=VARCHAR},
+      menxi = #{record.menxi,jdbcType=VARCHAR},
+      xuanpei = #{record.xuanpei,jdbcType=VARCHAR},
+      beizhu = #{record.beizhu,jdbcType=VARCHAR},
+      oid = #{record.oid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qp.pojo.Orderitem" >
+    update orderitem
+    <set >
+      <if test="menxing != null" >
+        menxing = #{menxing,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="chicun != null" >
+        chicun = #{chicun,jdbcType=VARCHAR},
+      </if>
+      <if test="menxiang != null" >
+        menxiang = #{menxiang,jdbcType=VARCHAR},
+      </if>
+      <if test="mensuo != null" >
+        mensuo = #{mensuo,jdbcType=VARCHAR},
+      </if>
+      <if test="heye != null" >
+        heye = #{heye,jdbcType=VARCHAR},
+      </if>
+      <if test="menxi != null" >
+        menxi = #{menxi,jdbcType=VARCHAR},
+      </if>
+      <if test="xuanpei != null" >
+        xuanpei = #{xuanpei,jdbcType=VARCHAR},
+      </if>
+      <if test="beizhu != null" >
+        beizhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="oid != null" >
+        oid = #{oid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where itemid = #{itemid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qp.pojo.Orderitem" >
+    update orderitem
+    set menxing = #{menxing,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      chicun = #{chicun,jdbcType=VARCHAR},
+      menxiang = #{menxiang,jdbcType=VARCHAR},
+      mensuo = #{mensuo,jdbcType=VARCHAR},
+      heye = #{heye,jdbcType=VARCHAR},
+      menxi = #{menxi,jdbcType=VARCHAR},
+      xuanpei = #{xuanpei,jdbcType=VARCHAR},
+      beizhu = #{beizhu,jdbcType=VARCHAR},
+      oid = #{oid,jdbcType=INTEGER}
+    where itemid = #{itemid,jdbcType=INTEGER}
+  </update>
+  -->
+</mapper>

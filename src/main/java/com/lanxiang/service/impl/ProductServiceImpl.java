@@ -25,4 +25,14 @@ public class ProductServiceImpl implements ProductService {
     public int addProduct(Product product) {
         return pd.addProduct(product);
     }
+
+    @Override
+    public List getNewProduct() {
+        return pd.getNewProduct();
+    }
+
+    @Override
+    public Product getProductById(int id) {
+        return pd.getProductById(id);
+    }
 }

@@ -16,7 +16,12 @@
   <select id="getProductList" parameterType="Product" resultMap="BaseResultMap">
     select  * from product
   </select>
-
+  <select id="getNewProduct" parameterType="Product" resultMap="BaseResultMap">
+    select  * from product order by addedTime desc limit 0,6
+  </select>
+  <select id="getProductById" parameterType="int" resultMap="BaseResultMap">
+    select  * from product where id=#{id}
+  </select>
     <insert id="addProduct" parameterType="Product" >
     insert into product(name,catgory,price,model,image,introduction,features,addedTime)values (#{name},#{catgory},#{price},#{model},#{image},#{introduction},#{features},#{addedTime})
     </insert>

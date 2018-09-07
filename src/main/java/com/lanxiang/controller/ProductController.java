@@ -2,7 +2,6 @@ package com.lanxiang.controller;
 
 import com.lanxiang.model.News;
 import com.lanxiang.model.Product;
-import com.lanxiang.service.NewsService;
 import com.lanxiang.service.ProductService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -28,10 +28,23 @@ public class ProductController {
     public String news_list(Model model){
         List<News> list=ps.getProductList();
         model.addAttribute("list",list);
-        System.out.println(list.size());
-        return "products_list";
+        System.out.println(list);
+        return "product_list";
     }
-    @RequestMapping("/product-add")
+    @RequestMapping("/newProduct")
+    public @ResponseBody List newProduce(){
+        List<News> list=ps.getNewProduct();
+        System.out.println(list);
+        return list;
+    }
+    @RequestMapping("/getProductById")
+    public  Product getProductById(HttpServletRequest request){
+        int id= Integer.parseInt(request.getParameter("id"));
+        Product product=ps.getProductById(id);
+        System.out.println(product);
+        return product;
+    }
+    @RequestMapping("/product_add")
     public String news_add(){
         return "product_add";
     }
