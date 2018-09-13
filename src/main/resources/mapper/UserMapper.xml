@@ -11,10 +11,13 @@
   </resultMap>
 
   <select id="loginUser" parameterType="User" resultMap="BaseResultMap" >
-    select * from user where userName=#{userName} and passWord=#{passWord}
+    select * from user where tel=#{tel} and passWord=#{passWord}
   </select>
   <update id="updateAddress" parameterType="User">
     update user set user.address=#{address} where user.userId=#{userId}
+  </update>
+  <update id="updateTEL" parameterType="User">
+    update user set tel=#{tel} where user.userId=#{userId}
   </update>
     <select id="getAddress" parameterType="User" resultMap="BaseResultMap" >
     select address from user where userId=#{userId}
@@ -22,6 +25,17 @@
   <select id="getUser" parameterType="User" resultMap="BaseResultMap" >
     select * from user where userId=#{userId}
     </select>
+
+  <select id="getUserList" parameterType="String" resultMap="BaseResultMap" >
+    select * from user where role=#{role}
+    </select>
+  <delete id="deleteUser" parameterType="int" >
+    delete  from user where userId=#{userId}
+  </delete>
+
+  <insert id="addUser" parameterType="User">
+    insert into user (userName,passWord,tel,role) values (#{userName},#{passWord},#{tel},#{role})
+  </insert>
   <!--
   <sql id="Example_Where_Clause" >
     <where >

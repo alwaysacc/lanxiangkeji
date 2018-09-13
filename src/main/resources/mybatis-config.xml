@@ -6,6 +6,7 @@
     <!-- 别名 -->
     <settings>
         <setting name="logImpl" value="LOG4J"/>
+        <setting name="jdbcTypeForNull" value="NULL" />
     </settings>
     <typeAliases>
         <package name="com.lanxiang.model"/>

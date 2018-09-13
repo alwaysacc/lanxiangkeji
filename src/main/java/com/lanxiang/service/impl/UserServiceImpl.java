@@ -6,6 +6,7 @@ import com.lanxiang.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,4 +33,25 @@ public class UserServiceImpl implements UserService {
     public User getUser(User user) {
         return ud.getUser(user);
     }
+
+    @Override
+    public List getUserList(String role) {
+        return ud.getUserList(role);
+    }
+
+    @Override
+    public int deleteUser(int userId) {
+        return ud.deleteUser(userId);
+    }
+
+    @Override
+    public int addUser(User user) {
+        return ud.addUser(user);
+    }
+
+    @Override
+    public int updateTEL(User user) {
+        return ud.updateTEL(user);
+    }
+
 }

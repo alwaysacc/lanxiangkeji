@@ -2,15 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lanxiang.dao.OrderDao" >
   <resultMap id="BaseResultMap" type="com.lanxiang.model.Order" >
+    <id column="id" property="id" jdbcType="INTEGER" />
     <id column="oid" property="oid" jdbcType="INTEGER" />
     <result column="odate" property="odate" jdbcType="VARCHAR" />
     <result column="stat" property="stat" jdbcType="VARCHAR" />
     <result column="userId" property="userId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
   </resultMap>
 
   <insert id="addOrder" parameterType="Order">
-  insert into order (oid,odate,stat,userId)values(#{oid},#{odate},#{stat},#{userId})
+  insert into orders (oid,odate,stat,userId,name,address,tel,price) values (#{oid},#{odate},#{stat},#{userId},#{name},#{address},#{tel},#{price})
   </insert>
+
+  <select id="getOrder" resultMap="BaseResultMap">
+    select  * from orders where userId=#{userId} and stat=#{stat}
+  </select>
+
+  <select id="getOrderNotIs" resultMap="BaseResultMap">
+    select  * from orders where userId=#{userId} and stat != #{stat}
+  </select>
+
+  <select id="getOrderByOid" parameterType="String" resultMap="BaseResultMap">
+    select  * from orders where oid=#{oid}
+  </select>
+
+  <select id="getOrderByStat" parameterType="String" resultMap="BaseResultMap">
+    select  * from orders where stat=#{stat}
+  </select>
+
+  <select id="getOrderByStat2" parameterType="String" resultMap="BaseResultMap">
+    select  * from orders where stat!=#{stat}
+  </select>
+
+
+  <update id="querenOrder" parameterType="Order">
+    update orders set stat=#{stat} where oid=#{oid}
+  </update>
   <!--
   <sql id="Example_Where_Clause" >
     <where >

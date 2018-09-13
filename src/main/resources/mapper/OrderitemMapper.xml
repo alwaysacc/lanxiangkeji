@@ -12,11 +12,20 @@
     <result column="menxi" property="menxi" jdbcType="VARCHAR" />
     <result column="xuanpei" property="xuanpei" jdbcType="VARCHAR" />
     <result column="beizhu" property="beizhu" jdbcType="VARCHAR" />
-    <result column="oid" property="oid" jdbcType="INTEGER" />
+    <result column="lvwang" property="lvwang" jdbcType="VARCHAR" />
+    <result column="fulizi" property="fulizi" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
   </resultMap>
   <insert id="addOrderItem" parameterType="Orderitem">
-  insert into orderItem (menxing,color,chicun,menxiang,mensuo,heye,menxi,xianpei,beizhu,oid) values (#{menxing},#{color},#{chicun},#{menxiang},#{mensuo},#{heye},#{menxi},#{xuanpei},#{beizhu},#{oid})
+  insert into orderitem (chanpin,menxing,color,chicun,menxiang,mensuo,heye,menxi,xuanpei,beizhu,lvwang,fulizi,num,oid,price)
+  values (#{chanpin},#{menxing,jdbcType=VARCHAR},#{color,jdbcType=VARCHAR},#{chicun,jdbcType=VARCHAR},#{menxiang,jdbcType=VARCHAR},#{mensuo,jdbcType=VARCHAR},#{heye,jdbcType=VARCHAR},#{menxi,jdbcType=VARCHAR},#{xuanpei,jdbcType=VARCHAR},#{beizhu,jdbcType=VARCHAR},#{lvwang},#{fulizi},#{num},#{oid},#{price})
   </insert>
+
+  <select id="getOrderItem" parameterType="String" resultMap="BaseResultMap">
+    select  * from orderitem where oid=#{oid}
+  </select>
   <!--
   <sql id="Example_Where_Clause" >
     <where >

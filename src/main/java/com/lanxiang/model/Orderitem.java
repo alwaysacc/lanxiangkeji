@@ -2,6 +2,7 @@ package com.lanxiang.model;
 
 public class Orderitem {
     private Integer itemid;
+    private Integer num;
     private String chanpin;
     private String menxing;
 
@@ -20,8 +21,10 @@ public class Orderitem {
     private String xuanpei;
 
     private String beizhu;
-
-    private Integer oid;
+    private String lvwang;
+    private String fulizi;
+    private String price;
+    private String oid;
 
     public Integer getItemid() {
         return itemid;
@@ -29,6 +32,27 @@ public class Orderitem {
 
     public void setItemid(Integer itemid) {
         this.itemid = itemid;
+    }
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+    public String getLvwang() {
+        return lvwang;
+    }
+
+    public void setLvwang(String lvwang) {
+        this.lvwang = lvwang == null ? null : lvwang.trim();
+    }
+    public String getFulizi() {
+        return fulizi;
+    }
+
+    public void setFulizi(String fulizi) {
+        this.fulizi = fulizi == null ? null : fulizi.trim();
     }
     public String getChanpin() {
         return chanpin;
@@ -111,16 +135,25 @@ public class Orderitem {
         this.beizhu = beizhu == null ? null : beizhu.trim();
     }
 
-    public Integer getOid() {
+    public String getOid() {
         return oid;
     }
 
-    public void setOid(Integer oid) {
+    public void setOid(String oid) {
         this.oid = oid;
     }
 
     @Override
     public String toString() {
         return super.toString();
+    }
+
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }
