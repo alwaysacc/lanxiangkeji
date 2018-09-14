@@ -39,7 +39,7 @@ public class OrderController {
         User user=(User)JSONObject.toBean(jsonObject, User.class);
         //添加订单
         Order order=new Order();
-        SimpleDateFormat formate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat formate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         order.setOdate(formate.format(new Date()));
         System.out.println(user.getUserId());
         order.setUserId(user.getUserId());
@@ -47,7 +47,7 @@ public class OrderController {
         order.setName(user.getUserName());
         order.setTel(user.getTel());
         order.setStat("已付款");
-        order.setOid("dd"+GetIdForTime.getOrderIdByTime());
+        order.setOid("LX"+GetIdForTime.getOrderIdByTime());
         String totalPrice=request.getParameter("totalPrice");
         order.setPrice(totalPrice);
         os.addOrder(order);
@@ -136,4 +136,5 @@ public class OrderController {
        int rsu=os.querenOrder(order);
         return rsu;
     }
+
 }

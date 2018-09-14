@@ -25,6 +25,7 @@ public class Orderitem {
     private String fulizi;
     private String price;
     private String oid;
+    private String fengshan;
 
     public Integer getItemid() {
         return itemid;
@@ -33,6 +34,7 @@ public class Orderitem {
     public void setItemid(Integer itemid) {
         this.itemid = itemid;
     }
+
     public Integer getNum() {
         return num;
     }
@@ -40,6 +42,7 @@ public class Orderitem {
     public void setNum(Integer num) {
         this.num = num;
     }
+
     public String getLvwang() {
         return lvwang;
     }
@@ -47,6 +50,7 @@ public class Orderitem {
     public void setLvwang(String lvwang) {
         this.lvwang = lvwang == null ? null : lvwang.trim();
     }
+
     public String getFulizi() {
         return fulizi;
     }
@@ -54,6 +58,7 @@ public class Orderitem {
     public void setFulizi(String fulizi) {
         this.fulizi = fulizi == null ? null : fulizi.trim();
     }
+
     public String getChanpin() {
         return chanpin;
     }
@@ -155,5 +160,13 @@ public class Orderitem {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getFengshan() {
+        return fengshan;
+    }
+
+    public void setFengshan(String fengshan) {
+        this.fengshan = fengshan;
     }
 }

@@ -17,10 +17,11 @@
     <result column="num" property="num" jdbcType="INTEGER" />
     <result column="oid" property="oid" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="fengshan" property="fengshan" jdbcType="VARCHAR" />
   </resultMap>
   <insert id="addOrderItem" parameterType="Orderitem">
-  insert into orderitem (chanpin,menxing,color,chicun,menxiang,mensuo,heye,menxi,xuanpei,beizhu,lvwang,fulizi,num,oid,price)
-  values (#{chanpin},#{menxing,jdbcType=VARCHAR},#{color,jdbcType=VARCHAR},#{chicun,jdbcType=VARCHAR},#{menxiang,jdbcType=VARCHAR},#{mensuo,jdbcType=VARCHAR},#{heye,jdbcType=VARCHAR},#{menxi,jdbcType=VARCHAR},#{xuanpei,jdbcType=VARCHAR},#{beizhu,jdbcType=VARCHAR},#{lvwang},#{fulizi},#{num},#{oid},#{price})
+  insert into orderitem (chanpin,menxing,color,chicun,menxiang,mensuo,heye,menxi,xuanpei,beizhu,lvwang,fulizi,num,oid,price,fengshan)
+  values (#{chanpin},#{menxing},#{color},#{chicun},#{menxiang},#{mensuo},#{heye},#{menxi},#{xuanpei},#{beizhu},#{lvwang},#{fulizi},#{num},#{oid},#{price},#{fengshan})
   </insert>
 
   <select id="getOrderItem" parameterType="String" resultMap="BaseResultMap">
