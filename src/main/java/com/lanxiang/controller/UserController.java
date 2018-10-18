@@ -1,7 +1,10 @@
 package com.lanxiang.controller;
 
-
+import com.lanxiang.model.Color;
+import com.lanxiang.model.Menxing;
 import com.lanxiang.model.User;
+import com.lanxiang.service.ColorService;
+import com.lanxiang.service.MenxingService;
 import com.lanxiang.service.UserService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -21,6 +25,10 @@ import java.util.List;
 public class UserController {
     @Resource
     private UserService us;
+    @Resource
+    private ColorService cs;
+    @Resource
+    private MenxingService ms;
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(UserController.class);// 日志文件
 
@@ -77,7 +85,7 @@ public class UserController {
         Object o=json.get(0);
         JSONObject jsonObject2= JSONObject.fromObject(o);
         User user=(User) JSONObject.toBean(jsonObject2, User.class);
-        user.setRole("1");
+        user.setRole("3");
         return  us.addUser(user);
     }
 
@@ -91,6 +99,26 @@ public class UserController {
         int resultUser = us.updateTEL(user);
         return resultUser;
     }
+    @RequestMapping("/updateEmail")
+    public  @ResponseBody int updateEmail(HttpServletRequest request) throws Exception {
+        String email = request.getParameter("email");
+        String userjson= request.getParameter("user");
+        JSONObject jsonObject=JSONObject.fromObject(userjson);
+        User user=(User)JSONObject.toBean(jsonObject, User.class);
+        user.setEmail(email);
+        int resultUser = us.updateEmail(user);
+        return resultUser;
+    }
+    @RequestMapping("/updateDianpu")
+    public  @ResponseBody int updateDianpu(HttpServletRequest request) throws Exception {
+        String dianpu = request.getParameter("dianpu");
+        String userjson= request.getParameter("user");
+        JSONObject jsonObject=JSONObject.fromObject(userjson);
+        User user=(User)JSONObject.toBean(jsonObject, User.class);
+        user.setDianpu(dianpu);
+        int resultUser = us.updateDianPu(user);
+        return resultUser;
+    }
     @RequestMapping("/getUser")
     public  @ResponseBody User getUser(HttpServletRequest request) throws Exception {
         String userjson= request.getParameter("user");
@@ -98,5 +126,49 @@ public class UserController {
         User user=(User)JSONObject.toBean(jsonObject, User.class);
         User resultUser = us.getUser(user);
         return resultUser;
+    }
+    @RequestMapping("/getColor")
+    public  @ResponseBody List getColor(HttpServletRequest request) throws Exception {
+        return cs.getColorList();
+    }
+    @RequestMapping("/deleteColor")
+    public  @ResponseBody int deleteColor(HttpServletRequest request) throws Exception {
+        int id= Integer.parseInt(request.getParameter("id"));
+        return cs.deleteColor(id);
+    }
+    @RequestMapping(value = "/addColor")
+    public @ResponseBody int addColor(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        String userjson= request.getParameter("color");
+        JSONArray json=JSONArray.fromObject(userjson);
+        Object o=json.get(0);
+        JSONObject jsonObject2= JSONObject.fromObject(o);
+        Color color =(Color) JSONObject.toBean(jsonObject2, Color.class);
+        return  cs.addColor(color);
+    }
+
+
+    @RequestMapping("/getMenxing")
+    public  @ResponseBody List getMenxing(HttpServletRequest request) throws Exception {
+        return ms.getMenxingList();
+    }
+    @RequestMapping("/deleteMenxing")
+    public  @ResponseBody int deleteMenxing(HttpServletRequest request) throws Exception {
+        int id= Integer.parseInt(request.getParameter("id"));
+        return ms.deleteMenxing(id);
+    }
+
+    @RequestMapping(value = "/addMenxing")
+    public @ResponseBody int addMenxing(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        String userjson= request.getParameter("menxing");
+        JSONArray json=JSONArray.fromObject(userjson);
+        Object o=json.get(0);
+        JSONObject jsonObject2= JSONObject.fromObject(o);
+        Menxing menxing =(Menxing) JSONObject.toBean(jsonObject2, Menxing.class);
+        return  ms.addMenxing(menxing);
+    }
+
+    @RequestMapping(value = "/downloadApp")
+    public String downloadApp(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return "app";
     }
 }

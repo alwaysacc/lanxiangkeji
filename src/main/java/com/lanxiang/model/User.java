@@ -11,7 +11,12 @@ public class User {
 
     private String address;
 
-    private String role;
+    private String role;//1 财务  2 生产 3 用户   6 总管理
+
+    private  String email;
+
+    private String dianpu;
+
 
     public Integer getUserId() {
         return userId;
@@ -59,5 +64,21 @@ public class User {
 
     public void setRole(String role) {
         this.role = role == null ? null : role.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDianpu() {
+        return dianpu;
+    }
+
+    public void setDianpu(String dianpu) {
+        this.dianpu = dianpu;
     }
 }

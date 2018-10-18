@@ -13,7 +13,8 @@ public class Order {
     private String address;
     private String name;
     private String tel;
-
+    private String jindu;
+    private  String wuliu;
     public String getOdate() {
         return odate;
     }
@@ -76,5 +77,21 @@ public class Order {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getJindu() {
+        return jindu;
+    }
+
+    public void setJindu(String jindu) {
+        this.jindu = jindu;
+    }
+
+    public String getWuliu() {
+        return wuliu;
+    }
+
+    public void setWuliu(String wuliu) {
+        this.wuliu = wuliu;
     }
 }

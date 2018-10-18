@@ -7,7 +7,8 @@
     <result column="passWord" property="passWord" jdbcType="VARCHAR" />
     <result column="tel" property="tel" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
-    <result column="role" property="role" jdbcType="VARCHAR" />
+    <result column="dianpu" property="dianpu" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
   </resultMap>
 
   <select id="loginUser" parameterType="User" resultMap="BaseResultMap" >
@@ -18,6 +19,14 @@
   </update>
   <update id="updateTEL" parameterType="User">
     update user set tel=#{tel} where user.userId=#{userId}
+  </update>
+
+  <update id="updateEmail" parameterType="User">
+    update user set email=#{email} where user.userId=#{userId}
+  </update>
+
+  <update id="updateDianPu" parameterType="User">
+    update user set dianpu=#{dianpu} where user.userId=#{userId}
   </update>
     <select id="getAddress" parameterType="User" resultMap="BaseResultMap" >
     select address from user where userId=#{userId}

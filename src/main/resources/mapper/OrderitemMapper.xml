@@ -24,9 +24,13 @@
   values (#{chanpin},#{menxing},#{color},#{chicun},#{menxiang},#{mensuo},#{heye},#{menxi},#{xuanpei},#{beizhu},#{lvwang},#{fulizi},#{num},#{oid},#{price},#{fengshan})
   </insert>
 
-  <select id="getOrderItem" parameterType="String" resultMap="BaseResultMap">
+  <select id="getOrderItem" parameterType="String" resultType="map">
     select  * from orderitem where oid=#{oid}
   </select>
+
+  <delete id="quxiaoOrder" parameterType="String" >
+    delete  from orderitem where oid=#{oid}
+  </delete>
   <!--
   <sql id="Example_Where_Clause" >
     <where >

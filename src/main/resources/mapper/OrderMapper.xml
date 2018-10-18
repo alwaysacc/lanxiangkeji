@@ -10,6 +10,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="jindu" property="jindu" jdbcType="VARCHAR" />
   </resultMap>
 
   <insert id="addOrder" parameterType="Order">
@@ -17,29 +18,49 @@
   </insert>
 
   <select id="getOrder" resultMap="BaseResultMap">
-    select  * from orders where userId=#{userId} and stat=#{stat}
+    select  * from orders where userId=#{userId} and stat=#{stat}  order by odate ASC
   </select>
 
   <select id="getOrderNotIs" resultMap="BaseResultMap">
-    select  * from orders where userId=#{userId} and stat != #{stat}
+    select  * from orders where userId=#{userId} and stat != #{stat}  order by odate ASC
   </select>
 
   <select id="getOrderByOid" parameterType="String" resultMap="BaseResultMap">
     select  * from orders where oid=#{oid}
   </select>
 
+  <select id="getOrderByOid2" parameterType="String" resultType="map">
+    select  * from orders where oid=#{oid}
+  </select>
+
   <select id="getOrderByStat" parameterType="String" resultMap="BaseResultMap">
-    select  * from orders where stat=#{stat}
+    select  * from orders where stat=#{stat}   order by odate ASC
   </select>
 
   <select id="getOrderByStat2" parameterType="String" resultMap="BaseResultMap">
-    select  * from orders where stat!=#{stat}
+    select  * from orders where stat!=#{stat}   order by odate ASC
   </select>
-
-
-  <update id="querenOrder" parameterType="Order">
+  <select id="getCountForToday"  resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM orders WHERE TO_DAYS(odate) = TO_DAYS(NOW())
+  </select>
+  <select id="getOrderForToday"  resultMap="BaseResultMap">
+    SELECT  *  FROM orders WHERE TO_DAYS(odate) = TO_DAYS(NOW())
+  </select>
+  <update id="updateOrder" parameterType="Order">
     update orders set stat=#{stat} where oid=#{oid}
   </update>
+  <update id="updateJindu" parameterType="Order">
+    update orders set jindu=#{jindu} where oid=#{oid}
+  </update>
+  <update id="shouhuo" parameterType="Order">
+    update orders set stat=#{stat} where oid=#{oid}
+  </update>
+  <update id="wuliu" parameterType="Order">
+    update orders set wuliu=#{wuliu} where oid=#{oid}
+  </update>
+  <delete id="quxiao" parameterType="String" >
+    delete  from orders where oid=#{oid}
+  </delete>
   <!--
   <sql id="Example_Where_Clause" >
     <where >

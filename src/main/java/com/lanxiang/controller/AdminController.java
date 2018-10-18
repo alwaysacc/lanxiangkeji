@@ -3,14 +3,14 @@ package com.lanxiang.controller;
 
 import com.lanxiang.model.Admin;
 import com.lanxiang.service.AdminService;
+import org.apache.log4j.Logger;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.apache.log4j.Logger;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
 
 @Controller
 @RequestMapping("/admin")
@@ -22,11 +22,14 @@ public class AdminController {
 
     @RequestMapping("/login")
     public String login(Admin admin, HttpServletRequest request) throws Exception {
-    Admin resultAdmin=as.findAdmin(admin);
+        HttpSession session1 = request.getSession();
+
+        if (session1.getAttribute("currentUser")!=null){
+            return "index";
+        }
+        Admin resultAdmin=as.findAdmin(admin);
         request.setCharacterEncoding("UTF-8");
         String username=request.getParameter("username");
-
-
         if (resultAdmin == null) {
             System.out.println(admin.getUsername());
             request.setAttribute("admin", admin);

@@ -22,4 +22,8 @@ public interface UserService {
     int addUser(User user);
 
     int updateTEL(User user);
+
+    int updateEmail(User user);
+
+    int updateDianPu(User user);
 }

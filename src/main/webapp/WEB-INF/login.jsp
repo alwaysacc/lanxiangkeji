@@ -37,7 +37,7 @@
     <div class="loginbody">
 <div class="login-container">
 	<div class="center">
-	     <img src="${pageContext.request.contextPath}/images/logo1.png" />
+
 							</div>
 
 							<div class="space-6"></div>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderItemServiceImpl implements OrderItemService {
@@ -20,7 +21,12 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public List getOrderItem(String oid) {
+    public   List<Map> getOrderItem(String oid) {
         return od.getOrderItem(oid);
+    }
+
+    @Override
+    public int quxiaoOrder(String oid) {
+        return od.quxiaoOrder(oid);
     }
 }

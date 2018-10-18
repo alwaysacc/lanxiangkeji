@@ -54,4 +54,14 @@ public class UserServiceImpl implements UserService {
         return ud.updateTEL(user);
     }
 
+    @Override
+    public int updateEmail(User user) {
+        return ud.updateEmail(user);
+    }
+
+    @Override
+    public int updateDianPu(User user) {
+        return ud.updateDianPu(user);
+    }
+
 }
